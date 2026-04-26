@@ -1,0 +1,102 @@
+<view class="container">
+  <!-- 顶部 -->
+  <view class="header">
+    <h1>青工智行打印店</h1>
+    <p class="subtitle">专业高效·品质打印</p>
+    <p class="tagline">专业上门 | 快速打印 | 优质服务</p>
+  </view>
+
+  <!-- 上传文件区域 -->
+  <view class="upload-section">
+    <text class="section-title">上传文件</text>
+    <view class="upload-options">
+      <view class="upload-btn" bindtap="chooseFromWeChat">
+        <text class="icon">💬</text>
+        <text>从微信聊天选择</text>
+        <text class="hint">支持PDF/Word/Excel/PPT/图片等格式</text>
+      </view>
+      <view class="upload-btn" bindtap="chooseFromLocal">
+        <text class="icon">📁</text>
+        <text>从手机本地选择</text>
+        <text class="hint">选择本机存储中的文件</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已选文件 -->
+  <view class="files-section">
+    <view class="section-header">
+      <text class="section-title">已选文件 ({{files.length}})</text>
+      <text class="clear-btn" bindtap="clearFiles">清空</text>
+    </view>
+    <view class="files-list">
+      <view wx:for="{{files}}" wx:key="index" class="file-item">
+        <view class="file-icon">
+          <text>{{name.substring(name.lastIndexOf('.') + 1).toUpperCase()}}</text>
+        </view>
+        <view class="file-info">
+          <text class="file-name">{{name}}</text>
+          <text class="file-size">{{formattedSize}}MB · {{pages}}页</text>
+        </view>
+        <view class="file-remove" bindtap="removeFile" data-index="{{index}}">
+          <text>×</text>
+        </view>
+      </view>
+      <view wx:if="files.length === 0" class="empty-files">
+        <text>暂无文件，请选择文件</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 打印设置 -->
+  <view class="settings-section">
+    <view class="section-header">
+      <text class="section-title">打印设置（默认）</text>
+      <text class="edit-btn" bindtap="goToPrintSettings">修改</text>
+    </view>
+    <view class="settings-grid">
+      <view class="setting-item">
+        <text class="setting-label">颜色</text>
+        <text class="setting-value">{{printSettings.color}}</text>
+      </view>
+      <view class="setting-item">
+        <text class="setting-label">单双面</text>
+        <text class="setting-value">{{printSettings.duplex}}</text>
+      </view>
+      <view class="setting-item">
+        <text class="setting-label">纸张</text>
+        <text class="setting-value">{{printSettings.paperSize}}</text>
+      </view>
+      <view class="setting-item">
+        <text class="setting-label">份数</text>
+        <text class="setting-value">{{printSettings.copies}}份</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预估价格 -->
+  <view class="price-section">
+    <text class="price-label">预估价格：</text>
+    <text class="price-value">¥{{estimatedPrice}}</text>
+    <text class="price-hint">明细 ></text>
+  </view>
+
+  <!-- 立即下单按钮 -->
+  <button class="order-btn" bindtap="goToPrintSettings">立即下单</button>
+
+  <!-- 底部导航 -->
+  <view class="bottom-nav">
+    <view class="nav-item active">
+      <text class="nav-icon">🏠</text>
+      <text class="nav-text">首页</text>
+    </view>
+    <view class="nav-item" bindtap="goToOrders">
+      <text class="nav-icon">📋</text>
+      <text class="nav-text">订单</text>
+    </view>
+    <view class="nav-item" bindtap="goToProfile">
+      <text class="nav-icon">👤</text>
+      <text class="nav-text">我的</text>
+    </view>
+  </view>
+</view>

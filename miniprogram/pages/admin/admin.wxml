@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="section">
+    <text class="label">单页价格：</text>
+    <input type="number" value="{{singlePrice}}" bindinput="onSinglePriceChange" step="0.1" min="0" class="input" />
+    <text class="unit">元</text>
+  </view>
+
+  <view class="section">
+    <text class="label">彩色价格：</text>
+    <input type="number" value="{{colorPrice}}" bindinput="onColorPriceChange" step="0.1" min="0" class="input" />
+    <text class="unit">元</text>
+  </view>
+
+  <view class="section">
+    <text class="label">双面折扣：</text>
+    <input type="number" value="{{duplexDiscount}}" bindinput="onDuplexDiscountChange" step="0.1" min="0" max="1" class="input" />
+    <text class="unit">折</text>
+  </view>
+
+  <view class="section">
+    <text class="label">管理员密码：</text>
+    <input type="password" value="{{password}}" bindinput="onPasswordChange" class="input" />
+  </view>
+
+  <button class="save-btn" bindtap="save">保存修改</button>
+</view>

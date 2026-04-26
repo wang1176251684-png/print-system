@@ -1,0 +1,96 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <text class="nav-back" bindtap="navigateBack">←</text>
+    <text class="nav-title">打印设置</text>
+    <text class="nav-placeholder"></text>
+  </view>
+
+  <!-- 已选文件 -->
+  <view class="file-info">
+    <view class="file-item">
+      <view class="file-icon">
+        <text>{{files[0].name.substring(files[0].name.lastIndexOf('.') + 1).toUpperCase()}}</text>
+      </view>
+      <view class="file-info">
+        <text class="file-name">{{files[0].name}}</text>
+        <text class="file-size">{{files[0].formattedSize}}MB · {{files[0].pages}}页</text>
+      </view>
+    </view>
+    <text wx:if="files.length > 1" class="more-files">等{{files.length}}个文件</text>
+  </view>
+
+  <!-- 打印设置选项 -->
+  <view class="settings-section">
+    <!-- 颜色 -->
+    <view class="setting-group">
+      <text class="setting-title">颜色</text>
+      <view class="checkbox-group">
+        <label class="checkbox-item {{printSettings.color === '黑白' ? 'active' : ''}}" bindtap="selectColor" data-color="黑白">
+          <checkbox checked="{{printSettings.color === '黑白'}}" />
+          <text>黑白</text>
+        </label>
+        <label class="checkbox-item disabled" bindtap="selectColor" data-color="彩色">
+          <checkbox checked="{{printSettings.color === '彩色'}}" disabled />
+          <text>彩色</text>
+        </label>
+      </view>
+    </view>
+
+    <!-- 单双面 -->
+    <view class="setting-group">
+      <text class="setting-title">单双面</text>
+      <view class="checkbox-group">
+        <label class="checkbox-item {{printSettings.duplex === '单面' ? 'active' : ''}}" bindtap="selectDuplex" data-duplex="单面">
+          <checkbox checked="{{printSettings.duplex === '单面'}}" />
+          <text>单面</text>
+        </label>
+        <label class="checkbox-item {{printSettings.duplex === '双面' ? 'active' : ''}}" bindtap="selectDuplex" data-duplex="双面">
+          <checkbox checked="{{printSettings.duplex === '双面'}}" />
+          <text>双面</text>
+        </label>
+      </view>
+    </view>
+
+    <!-- 份数 -->
+    <view class="setting-group">
+      <text class="setting-title">份数</text>
+      <view class="copies-control">
+        <view class="control-btn" bindtap="changeCopies" data-action="decrease" disabled="{{printSettings.copies <= 1}}">-</view>
+        <text class="copies-value">{{printSettings.copies}}</text>
+        <view class="control-btn" bindtap="changeCopies" data-action="increase">+</view>
+      </view>
+    </view>
+
+    <!-- 页面范围 -->
+    <view class="setting-group">
+      <text class="setting-title">页面范围</text>
+      <view class="setting-options">
+        <view class="option-item {{printSettings.pageRange === '全部' ? 'active' : ''}}" bindtap="selectPageRange" data-range="全部">
+          <text>全部</text>
+        </view>
+        <view class="option-item {{printSettings.pageRange === '自定义' ? 'active' : ''}}" bindtap="selectPageRange" data-range="自定义">
+          <text>自定义</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注信息 -->
+    <view class="setting-group">
+      <text class="setting-title">备注信息</text>
+      <view class="remarks-btn" bindtap="goToRemarks">
+        <text>{{remarks || '添加备注'}}</text>
+        <text class="remarks-arrow">→</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预估价格 -->
+  <view class="price-section">
+    <text class="price-label">预估价格：</text>
+    <text class="price-value">¥{{estimatedPrice}}</text>
+  </view>
+
+  <!-- 确认打印按钮 -->
+  <button class="confirm-btn" bindtap="confirmPrint">确认打印</button>
+</view>

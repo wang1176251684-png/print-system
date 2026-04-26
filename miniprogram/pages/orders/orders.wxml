@@ -1,0 +1,54 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <text class="nav-back" bindtap="navigateBack">←</text>
+    <text class="nav-title">我的订单</text>
+    <text class="nav-placeholder"></text>
+  </view>
+
+  <!-- 标签切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === '全部' ? 'active' : ''}}" bindtap="switchTab" data-tab="全部">
+      <text>全部</text>
+    </view>
+    <view class="tab-item {{activeTab === '排队中' ? 'active' : ''}}" bindtap="switchTab" data-tab="排队中">
+      <text>排队中</text>
+    </view>
+    <view class="tab-item {{activeTab === '打印中' ? 'active' : ''}}" bindtap="switchTab" data-tab="打印中">
+      <text>打印中</text>
+    </view>
+    <view class="tab-item {{activeTab === '已完成' ? 'active' : ''}}" bindtap="switchTab" data-tab="已完成">
+      <text>已完成</text>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="orders-list">
+    <view wx:for="{{orders}}" wx:key="orderId" class="order-item" bindtap="viewOrderDetail" data-order-id="{{orderId}}">
+      <view class="order-header">
+        <text class="order-id">{{orderId}}</text>
+        <text class="order-status">{{status}}</text>
+      </view>
+      <view class="order-content">
+        <view class="order-file">
+          <view class="file-icon">
+            <text>{{files[0].name.substring(files[0].name.lastIndexOf('.') + 1).toUpperCase()}}</text>
+          </view>
+          <view class="file-info">
+            <text class="file-name">{{files[0].name}}</text>
+            <text class="file-details">{{files[0].pages}}页 · {{printSettings.paperSize}} · {{printSettings.color}} · {{printSettings.duplex}}</text>
+          </view>
+        </view>
+        <view class="order-price">¥{{price}}</view>
+      </view>
+      <view class="order-footer">
+        <text class="order-time">{{createTime}}</text>
+        <text class="order-action">查看详情</text>
+      </view>
+    </view>
+    <view wx:if="orders.length === 0" class="empty-orders">
+      <text>暂无订单</text>
+      <button class="new-order-btn" bindtap="placeNewOrder">立即下单</button>
+    </view>
+  </view>
+</view>

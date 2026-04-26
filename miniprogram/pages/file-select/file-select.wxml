@@ -1,0 +1,53 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <text class="nav-back" bindtap="navigateBack">←</text>
+    <text class="nav-title">选择文件来源</text>
+    <text class="nav-placeholder"></text>
+  </view>
+
+  <!-- 选择选项 -->
+  <view class="select-options">
+    <view class="option-card" bindtap="chooseFromWeChat">
+      <text class="option-icon">💬</text>
+      <text class="option-title">从微信聊天选择</text>
+      <text class="option-hint">选择微信聊天中的文件</text>
+    </view>
+    <view class="option-card" bindtap="chooseFromLocal">
+      <text class="option-icon">📁</text>
+      <text class="option-title">从手机本地选择</text>
+      <text class="option-hint">选择本机存储中的文件</text>
+    </view>
+  </view>
+
+  <!-- 已选文件 -->
+  <view class="selected-files">
+    <view class="section-header">
+      <text class="section-title">已选文件</text>
+      <text class="file-count">{{files.length}}个</text>
+    </view>
+    <view class="files-list">
+      <view wx:for="{{files}}" wx:key="index" class="file-item">
+        <view class="file-icon">
+          <text>{{name.substring(name.lastIndexOf('.') + 1).toUpperCase()}}</text>
+        </view>
+        <view class="file-info">
+          <text class="file-name">{{name}}</text>
+          <text class="file-size">{{formattedSize}}MB · {{pages}}页</text>
+        </view>
+        <view class="file-remove" bindtap="removeFile" data-index="{{index}}">
+          <text>×</text>
+        </view>
+      </view>
+      <view wx:if="files.length === 0" class="empty-files">
+        <text>暂无文件，请选择文件</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-buttons">
+    <button class="continue-btn" bindtap="continueAdding">继续添加文件</button>
+    <button class="complete-btn" bindtap="completeSelection">完成</button>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <text class="nav-back" bindtap="navigateBack">←</text>
+    <text class="nav-title">备注信息</text>
+    <text class="nav-save" bindtap="saveRemarks">保存</text>
+  </view>
+
+  <!-- 备注输入区域 -->
+  <view class="remarks-section">
+    <text class="remarks-label">请输入备注信息</text>
+    <textarea
+      value="{{remarks}}"
+      bindinput="inputRemarks"
+      placeholder="例如：打印效果要求、取件时间等"
+      placeholder-class="placeholder"
+      class="remarks-input"
+      maxlength="200"
+    />
+    <text class="remarks-count">{{remarks.length}}/200</text>
+  </view>
+
+  <!-- 提示信息 -->
+  <view class="tips-section">
+    <text class="tips-title">备注说明</text>
+    <text class="tips-content">• 备注信息将作为订单的一部分提交给打印店</text>
+    <text class="tips-content">• 请清晰描述您的特殊要求</text>
+    <text class="tips-content">• 字数限制为200字</text>
+  </view>
+</view>

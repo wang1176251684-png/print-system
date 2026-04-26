@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="section">
+    <text class="label">页数：{{pages}}页</text>
+  </view>
+
+  <view class="section">
+    <text class="label">份数：</text>
+    <input type="number" value="{{copies}}" bindinput="onCopiesChange" min="1" class="input" />
+  </view>
+
+  <view class="section">
+    <text class="label">双面打印：</text>
+    <switch value="{{duplex}}" bindchange="onDuplexChange" />
+  </view>
+
+  <view class="section">
+    <text class="label">彩色打印：</text>
+    <switch value="{{color}}" bindchange="onColorChange" />
+  </view>
+
+  <view class="price-section">
+    <text class="price-label">预估价格：</text>
+    <text class="price-value">¥{{price}}</text>
+  </view>
+
+  <button class="confirm-btn" bindtap="confirmOrder">确认下单</button>
+</view>

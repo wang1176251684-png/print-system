@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- 顶部用户信息 -->
+  <view class="user-section">
+    <image src="{{userInfo.avatar}}" mode="aspectFit" class="avatar" />
+    <view class="user-info">
+      <text class="user-name">{{userInfo.name}}</text>
+      <text class="user-phone">{{userInfo.phone}}</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="function-section">
+    <view class="function-item" bindtap="goToOrders">
+      <text class="function-icon">📋</text>
+      <text class="function-name">我的订单</text>
+      <text class="function-arrow">→</text>
+    </view>
+    <view class="function-item" bindtap="goToAdmin">
+      <text class="function-icon">⚙️</text>
+      <text class="function-name">管理员入口</text>
+      <text class="function-arrow">→</text>
+    </view>
+    <view class="function-item" bindtap="contactService">
+      <text class="function-icon">🤝</text>
+      <text class="function-name">联系客服</text>
+      <text class="function-arrow">→</text>
+    </view>
+    <view class="function-item" bindtap="aboutUs">
+      <text class="function-icon">ℹ️</text>
+      <text class="function-name">关于我们</text>
+      <text class="function-arrow">→</text>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="bottom-nav">
+    <view class="nav-item" bindtap="navigateToHome">
+      <text class="nav-icon">🏠</text>
+      <text class="nav-text">首页</text>
+    </view>
+    <view class="nav-item" bindtap="goToOrders">
+      <text class="nav-icon">📋</text>
+      <text class="nav-text">订单</text>
+    </view>
+    <view class="nav-item active">
+      <text class="nav-icon">👤</text>
+      <text class="nav-text">我的</text>
+    </view>
+  </view>
+</view>
